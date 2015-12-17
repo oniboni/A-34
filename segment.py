@@ -13,7 +13,7 @@ class Segment:
         self.G = segments[6]
         self.p = segments[7]
 
-    def printSegment(self):
+    def print_segment(self):
 
         result = ['000', '000', '000', '000', '000']
 
@@ -37,11 +37,14 @@ class Segment:
                 result[1] = '100'
         if self.G:
             result[2] = '020'
+        # if self.p:
+        #     result[4][2] = '.'
 
-        self.render( self.scale (result,3) )
+        self.render(self.scale(result, 3))
 
     # copy&paste from https://stackoverflow.com/questions/18427782/seven-segment-display-with-width
-    def scale(self, code, factor):
+    @staticmethod
+    def scale(code, factor):
         if factor == 1:
             return code
 
@@ -53,6 +56,7 @@ class Segment:
 
         return result
 
+    # @staticmethod
     def render(self, code):
 
         if self.p:
