@@ -1,7 +1,7 @@
 __author__ = 'oni'
 
 from segment import Segment
-from logicStuff import LogicNet
+from logic.logicNet import LogicNet
 
 def main():
     input = "01 b0 c4 81 a6 c5 81 a0 5f 01 b7 5f"
