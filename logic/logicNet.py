@@ -30,7 +30,7 @@ class LogicNet:
         U2_12 = self.Q3
         U2_13 = not self.Q3
 
-        U3 = TTL('4081', [
+        U3 = TTL('4081', [          # out: 2,3,10,11
             U2_5, U2_3,                 # 0,1
             U2_12, self.Q1,             # 4,5
             U2_1, U2_13,                # 8,9
@@ -39,16 +39,16 @@ class LogicNet:
 
         U4 = TTL('4081', [
             U2_13, self.Q1,             # 0,1
-            U2_13, U3.pins[0],          # 4,5
-            U3.pins[0], U2_12,          # 8,9
-            U3.pins[1], U3.pins[4]      # 12,13
+            U2_13, U2_5,                # 4,5
+            U2_5, U2_12,                # 8,9
+            U2_3, U2_12                 # 12,13
         ])
 
         U5 = TTL('4081', [
             U2_13, self.Q2,             # 0,1
             U4.pins[12], U3.pins[12],   # 4,5
             U4.pins[12] & U3.pins[12], self.Q2 & U2_12,  # 8,9 =U8 8&9
-            U4.pins[10], U3.pins[5]      # 12,13
+            U3.pins[8], U3.pins[5]      # 12,13
         ])
 
         U6 = TTL('4081', [
@@ -81,8 +81,8 @@ class LogicNet:
 
         U10 = TTL('4071', [
             U3.pins[10], U8.pins[4],     # 0,1
-            U7.pins[2], U7.pins[13],     # 4,5
-            U6.pins[12], U6.pins[0],     # 8,9
+            U7.pins[13], U8.pins[4],     # 4,5
+            U6.pins[1], U6.pins[0],      # 8,9
             U7.pins[13], U6.pins[11]     # 12,13
         ])
 
@@ -102,7 +102,7 @@ class LogicNet:
 
         U13 = TTL('4071', [
             U9.pins[11], U12.pins[12],       # 0,1
-            U9.pins[11] | U12.pins[12], U8.pins[3],     # 4,5
+            U9.pins[11] | U12.pins[12], U7.pins[10],     # 4,5
             U10.pins[13], U12.pins[1] | U12.pins[13],    # 8,9
             U12.pins[1], U12.pins[13]        # 12,13
         ])
@@ -121,6 +121,6 @@ class LogicNet:
         E = U11.pins[10]
         D = U12.pins[3]
         C = U12.pins[10]
-        p = U2_1
+        p = U8.pins[5]
 
         return [A, B, C, D, E, F, G, p]

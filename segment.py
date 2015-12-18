@@ -63,4 +63,5 @@ class Segment:
             code[len(code)-1] += '.'
 
         for line in code:
-            print(line.replace('0', ' ').replace('1', '|').replace('2', '-'))
+            out = line.replace('0', ' ').replace('1', '\033[1;47m|\033[1;m').replace('2', '\033[1;47m-\033[1;m')
+            print out
